@@ -17,3 +17,19 @@ n^2 + 100000n + 3^1000 = O(n^2)
 log(n) + n + 4 = O(n)\
 0.0001 * n * log(n) + 300n = O(n log n)
 2n^30 + 3^n = O(3^n)
+
+## Lecture 11 - Understanding Program Efficiency, Part 2
+
+Characteristics of complexity classes
+
+O(1) - code does not depend on size of problem
+
+O(log n) - reduce problem in half each time through process
+
+O(n) - simple iterative or recursive programs
+
+O(n log n) - 
+
+O(n^c) - nested loops or recursive calls
+
+O(c^n) - multiple recursive calls at each level
