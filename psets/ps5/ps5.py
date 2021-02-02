@@ -2,7 +2,7 @@
 # Name:
 # Collaborators:
 # Time:
-
+import re
 import feedparser
 import string
 import time
@@ -107,25 +107,29 @@ class PhraseTrigger(Trigger):
     self.phrase = phrase
   
   def is_phrase_in(self, text):
-    return self.phrase.lower() in text.lower()
+    parse = text 
+    for c in string.punctuation:
+      parse = parse.replace(c, ' ')
+    ret_string  = " ".join(parse.split()).lower()
+    phrase = self.phrase.lower()
+    return re.search(r'\b' + phrase + r'\b', ret_string)
 
 # Problem 3
-# TODO: TitleTrigger
 class TitleTrigger(PhraseTrigger):
   def __init__(self, phrase):
     super().__init__(phrase)
 
   def evaluate(self, story):
-    return self.is_phrase_in(story)
+    return self.is_phrase_in(story.get_title())
 
 # Problem 4
-# TODO: DescriptionTrigger
 class DescriptionTrigger(PhraseTrigger):
   def __init__(self, phrase):
     super().__init__(phrase)
 
   def evaluate(self, story):
-    return super().evaluate(story)
+
+    return self.is_phrase_in(story.get_description())
 # TIME TRIGGERS
 
 # Problem 5
